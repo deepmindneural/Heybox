@@ -1,0 +1,15 @@
+echo "# Heybox" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/deepmindneural/Heybox.git
+git push -u origin main
+
+
+
+token de hit buh
+
+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
+
+

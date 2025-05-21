@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HEYBOX Restaurant App</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    header {
+      background-color: #00b8d4;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    .restaurant-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .restaurant-card {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      background-color: white;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .restaurant-card:hover {
+      transform: translateY(-5px);
+    }
+    .restaurant-image {
+      height: 180px;
+      background-color: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+    }
+    .restaurant-info {
+      padding: 1rem;
+    }
+    .restaurant-name {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: #00b8d4;
+    }
+    .restaurant-rating {
+      display: flex;
+      align-items: center;
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+    .login-section {
+      margin-top: 2rem;
+      text-align: center;
+      padding: 1.5rem;
+      background-color: #e1f5fe;
+      border-radius: 8px;
+    }
+    .btn {
+      display: inline-block;
+      background-color: #00b8d4;
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>HEYBOX Restaurant App</h1>
+    <p>Tu plataforma gastronómica favorita</p>
+  </header>
+  
+  <main>
+    <h2>Restaurantes Destacados</h2>
+    <p>Explora nuestra selección de los mejores restaurantes de la ciudad</p>
+    
+    <div class="restaurant-grid">
+      <div class="restaurant-card">
+        <div class="restaurant-image">
+          <img src="https://placehold.co/300x180/00b8d4/white?text=La+Trattoria" alt="Restaurante La Trattoria">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-name">La Trattoria</div>
+          <div class="restaurant-rating">⭐⭐⭐⭐⭐ (4.8)</div>
+          <div>Cocina Italiana • $$</div>
+          <p>Los mejores platos de pasta y pizzas artesanales de la ciudad.</p>
+        </div>
+      </div>
+      
+      <div class="restaurant-card">
+        <div class="restaurant-image">
+          <img src="https://placehold.co/300x180/0088a3/white?text=Sabor+Criollo" alt="Restaurante Sabor Criollo">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-name">Sabor Criollo</div>
+          <div class="restaurant-rating">⭐⭐⭐⭐ (4.5)</div>
+          <div>Comida Local • $$</div>
+          <p>Disfruta de los sabores auténticos de nuestra tierra.</p>
+        </div>
+      </div>
+      
+      <div class="restaurant-card">
+        <div class="restaurant-image">
+          <img src="https://placehold.co/300x180/62ebff/white?text=Sushi+Fusion" alt="Restaurante Sushi Fusion">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-name">Sushi Fusion</div>
+          <div class="restaurant-rating">⭐⭐⭐⭐⭐ (4.9)</div>
+          <div>Japonesa • $$$</div>
+          <p>La mejor experiencia de sushi con un toque único de fusión.</p>
+        </div>
+      </div>
+      
+      <div class="restaurant-card">
+        <div class="restaurant-image">
+          <img src="https://placehold.co/300x180/00b8d4/white?text=El+Rancho+Steak" alt="Restaurante El Rancho Steak">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-name">El Rancho Steak</div>
+          <div class="restaurant-rating">⭐⭐⭐⭐ (4.7)</div>
+          <div>Carnes • $$$</div>
+          <p>Las mejores cortes de carne a la parrilla, cocinados a tu gusto.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="login-section">
+      <h3>Accede a tu cuenta HEYBOX</h3>
+      <p>Inicia sesión para hacer pedidos, ver tu historial y aprovechar promociones exclusivas</p>
+      <a href="#" class="btn">Iniciar Sesión</a>
+    </div>
+  </main>
+  
+  <footer>
+    <p>&copy; 2025 HEYBOX Restaurant App. Todos los derechos reservados.</p>
+    <p>Servidores activos: Frontend (5173) - Backend (5001)</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <meta name="description" content="HEYBOX - Sistema de pedidos y retiro para restaurantes. Ordena comida de tus restaurantes favoritos y disfruta de la mejor experiencia gastronómica." />
+    <meta name="theme-color" content="#4f46e5" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    
+    <!-- Precargar recursos críticos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+    
+    <!-- SEO -->
+    <meta property="og:title" content="HEYBOX - Pedidos y retiro para restaurantes" />
+    <meta property="og:description" content="Sistema de pedidos y retiro para restaurantes. Ordena comida de tus restaurantes favoritos y disfruta de la mejor experiencia gastronómica." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://heybox.com" />
+    <meta property="og:image" content="/og-image.jpg" />
+    
+    <title>HEYBOX - Sistema de Pedidos y Retiro para Restaurantes</title>
+    
+    <!-- Inline critical CSS -->
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      .initial-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #f9fafb;
+        z-index: 9999;
+      }
+      .initial-loader__logo {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 20px;
+        animation: pulse 1.5s infinite ease-in-out;
+      }
+      @keyframes pulse {
+        0% { opacity: 1; }
+        50% { opacity: 0.5; }
+        100% { opacity: 1; }
+      }
+      .initial-loader__spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid rgba(79, 70, 229, 0.2);
+        border-radius: 50%;
+        border-top-color: #4f46e5;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <!-- Fallback para carga inicial -->
+      <div class="initial-loader">
+        <img class="initial-loader__logo" src="/logo.png" alt="HEYBOX Logo" />
+        <div class="initial-loader__spinner"></div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Scripts de analítica (cargan de forma diferida) -->
+    <script defer data-domain="heybox.com" src="https://plausible.io/js/script.js"></script>
+  </body>
+</html>
