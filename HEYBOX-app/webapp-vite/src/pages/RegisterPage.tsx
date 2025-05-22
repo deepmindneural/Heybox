@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { FiMail, FiLock, FiUser, FiPhone, FiGithub, FiFacebook } from 'react-icons/fi';
 
 const RegisterPage: React.FC = () => {
   const [nombre, setNombre] = useState<string>('');
@@ -69,23 +70,31 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Crea tu cuenta
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="sm:mx-auto sm:w-full sm:max-w-xl">
+        <div className="flex justify-center">
+          <div className="h-14 w-14 rounded-lg bg-gradient-to-r from-cyan-500 to-teal-400 flex items-center justify-center shadow-lg mb-3 transform hover:scale-105 transition-transform duration-300">
+            <span className="text-white font-bold text-2xl">HB</span>
+          </div>
+        </div>
+        <h2 className="text-center text-3xl font-extrabold text-transparent bg-gradient-to-r from-cyan-500 to-teal-400 bg-clip-text">
+          Únete a HEYBOX
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
           ¿Ya tienes una cuenta?{' '}
-          <Link to="/login" className="font-medium text-primary hover:text-primary-dark">
+          <Link to="/login" className="font-medium text-cyan-600 hover:text-cyan-500 transition-colors duration-300">
             Inicia sesión
           </Link>
         </p>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-xl">
+        <div className="bg-white py-8 px-4 shadow-lg sm:rounded-xl sm:px-10 border border-gray-200">
           {error && (
-            <div className="mb-4 p-3 bg-red-50 text-red-700 rounded-md text-sm">
+            <div className="mb-4 p-4 bg-red-50 text-red-700 rounded-lg text-sm flex items-center">
+              <svg className="w-5 h-5 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
               {error}
             </div>
           )}
@@ -96,7 +105,10 @@ const RegisterPage: React.FC = () => {
                 <label htmlFor="nombre" className="block text-sm font-medium text-gray-700">
                   Nombre
                 </label>
-                <div className="mt-1">
+                <div className="mt-1 relative rounded-md shadow-sm">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <FiUser className="h-5 w-5 text-gray-400" />
+                  </div>
                   <input
                     id="nombre"
                     name="nombre"
@@ -105,7 +117,8 @@ const RegisterPage: React.FC = () => {
                     required
                     value={nombre}
                     onChange={(e) => setNombre(e.target.value)}
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                    className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 transition-all duration-300 sm:text-sm"
+                    placeholder="Nombre"
                   />
                 </div>
               </div>
@@ -114,7 +127,10 @@ const RegisterPage: React.FC = () => {
                 <label htmlFor="apellido" className="block text-sm font-medium text-gray-700">
                   Apellido
                 </label>
-                <div className="mt-1">
+                <div className="mt-1 relative rounded-md shadow-sm">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <FiUser className="h-5 w-5 text-gray-400" />
+                  </div>
                   <input
                     id="apellido"
                     name="apellido"
@@ -123,7 +139,8 @@ const RegisterPage: React.FC = () => {
                     required
                     value={apellido}
                     onChange={(e) => setApellido(e.target.value)}
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                    className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 transition-all duration-300 sm:text-sm"
+                    placeholder="Apellido"
                   />
                 </div>
               </div>
@@ -133,7 +150,10 @@ const RegisterPage: React.FC = () => {
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                 Correo electrónico
               </label>
-              <div className="mt-1">
+              <div className="mt-1 relative rounded-md shadow-sm">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <FiMail className="h-5 w-5 text-gray-400" />
+                </div>
                 <input
                   id="email"
                   name="email"
@@ -142,7 +162,8 @@ const RegisterPage: React.FC = () => {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                  className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 transition-all duration-300 sm:text-sm"
+                  placeholder="tu@email.com"
                 />
               </div>
             </div>
@@ -151,7 +172,10 @@ const RegisterPage: React.FC = () => {
               <label htmlFor="telefono" className="block text-sm font-medium text-gray-700">
                 Teléfono
               </label>
-              <div className="mt-1">
+              <div className="mt-1 relative rounded-md shadow-sm">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <FiPhone className="h-5 w-5 text-gray-400" />
+                </div>
                 <input
                   id="telefono"
                   name="telefono"
@@ -160,7 +184,8 @@ const RegisterPage: React.FC = () => {
                   required
                   value={telefono}
                   onChange={(e) => setTelefono(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                  className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 transition-all duration-300 sm:text-sm"
+                  placeholder="+57 300 123 4567"
                 />
               </div>
             </div>
@@ -169,7 +194,10 @@ const RegisterPage: React.FC = () => {
               <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                 Contraseña
               </label>
-              <div className="mt-1">
+              <div className="mt-1 relative rounded-md shadow-sm">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <FiLock className="h-5 w-5 text-gray-400" />
+                </div>
                 <input
                   id="password"
                   name="password"
@@ -178,28 +206,31 @@ const RegisterPage: React.FC = () => {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                  className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 transition-all duration-300 sm:text-sm"
+                  placeholder="********"
                 />
+                <p className="mt-1 text-xs text-gray-500 ml-1">Mínimo 8 caracteres</p>
               </div>
-              <p className="mt-1 text-xs text-gray-500">
-                Mínimo 8 caracteres
-              </p>
             </div>
 
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="confirm-password" className="block text-sm font-medium text-gray-700">
                 Confirmar contraseña
               </label>
-              <div className="mt-1">
+              <div className="mt-1 relative rounded-md shadow-sm">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <FiLock className="h-5 w-5 text-gray-400" />
+                </div>
                 <input
-                  id="confirmPassword"
-                  name="confirmPassword"
+                  id="confirm-password"
+                  name="confirm-password"
                   type="password"
                   autoComplete="new-password"
                   required
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                  className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 transition-all duration-300 sm:text-sm"
+                  placeholder="********"
                 />
               </div>
             </div>
@@ -207,29 +238,25 @@ const RegisterPage: React.FC = () => {
             <div className="flex items-start">
               <div className="flex items-center h-5">
                 <input
-                  id="terms"
-                  name="terms"
+                  id="terminos"
+                  name="terminos"
                   type="checkbox"
                   checked={aceptaTerminos}
                   onChange={(e) => setAceptaTerminos(e.target.checked)}
-                  className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+                  className="h-4 w-4 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded transition-colors duration-300"
                 />
               </div>
               <div className="ml-3 text-sm">
-                <label htmlFor="terms" className="font-medium text-gray-700">
-                  Acepto los términos y condiciones
-                </label>
-                <p className="text-gray-500">
-                  Al registrarme, acepto los{' '}
-                  <Link to="/terminos" className="text-primary hover:text-primary-dark">
-                    términos y condiciones
+                <label htmlFor="terminos" className="font-medium text-gray-700">
+                  Acepto los{' '}
+                  <Link to="/terminos" className="font-medium text-cyan-600 hover:text-cyan-500 transition-colors duration-300">
+                    Términos y Condiciones
                   </Link>{' '}
                   y la{' '}
-                  <Link to="/privacidad" className="text-primary hover:text-primary-dark">
-                    política de privacidad
-                  </Link>{' '}
-                  de HEYBOX.
-                </p>
+                  <Link to="/privacidad" className="font-medium text-cyan-600 hover:text-cyan-500 transition-colors duration-300">
+                    Política de Privacidad
+                  </Link>
+                </label>
               </div>
             </div>
 
@@ -237,7 +264,7 @@ const RegisterPage: React.FC = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary ${
+                className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-md text-sm font-medium text-white bg-gradient-to-r from-cyan-500 to-teal-400 hover:from-cyan-600 hover:to-teal-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition-all duration-300 transform hover:scale-[1.02] ${
                   loading ? 'opacity-70 cursor-not-allowed' : ''
                 }`}
               >
@@ -270,34 +297,31 @@ const RegisterPage: React.FC = () => {
               <div>
                 <button
                   type="button"
-                  className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                  className="w-full inline-flex justify-center py-2.5 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 hover:border-gray-400 transition-all duration-300"
                 >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                    <path
-                      fillRule="evenodd"
-                      d="M10 0C4.477 0 0 4.477 0 10c0 4.42 2.865 8.166 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.605-3.369-1.343-3.369-1.343-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.933.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C17.14 18.163 20 14.418 20 10c0-5.523-4.477-10-10-10z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                  <FiGithub className="w-5 h-5" />
                 </button>
               </div>
 
               <div>
                 <button
                   type="button"
-                  className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                  className="w-full inline-flex justify-center py-2.5 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 hover:border-gray-400 transition-all duration-300"
                 >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                    <path
-                      fillRule="evenodd"
-                      d="M10 0C4.477 0 0 4.477 0 10c0 5.523 4.477 10 10 10 5.523 0 10-4.477 10-10C20 4.477 15.523 0 10 0zm-.469 14.265h-1.97V9.505H5.432V7.535h2.129V6.196c0-1.888.93-2.895 2.638-2.895.738 0 1.369.183 1.369.183v2.065h-.771c-.76 0-.996.472-.996.957v1.03h1.695l-.27 1.97h-1.425v4.759z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                  <FiFacebook className="w-5 h-5" />
                 </button>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      
+      <div className="mt-8 text-center text-xs text-gray-500">
+        <p className="mb-1"> 2025 HEYBOX Restaurant App - Todos los derechos reservados</p>
+        <div className="flex justify-center space-x-4">
+          <a href="#" className="hover:text-cyan-600 transition-colors duration-300">Términos</a>
+          <a href="#" className="hover:text-cyan-600 transition-colors duration-300">Privacidad</a>
+          <a href="#" className="hover:text-cyan-600 transition-colors duration-300">Soporte</a>
         </div>
       </div>
     </div>
