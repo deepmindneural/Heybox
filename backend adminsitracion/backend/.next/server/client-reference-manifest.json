@@ -40,14 +40,6 @@
         "async": false
       }
     },
-    "(app-client)/./node_modules/next/dist/client/link.js": {
-      "*": {
-        "id": "(sc_client)/./node_modules/next/dist/client/link.js",
-        "name": "*",
-        "chunks": [],
-        "async": false
-      }
-    },
     "(app-client)/./src/components/theme-provider.tsx": {
       "*": {
         "id": "(sc_client)/./src/components/theme-provider.tsx",
@@ -59,6 +51,14 @@
     "(app-client)/./src/components/ui/toaster.tsx": {
       "*": {
         "id": "(sc_client)/./src/components/ui/toaster.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./node_modules/next/dist/client/link.js": {
+      "*": {
+        "id": "(sc_client)/./node_modules/next/dist/client/link.js",
         "name": "*",
         "chunks": [],
         "async": false
@@ -83,6 +83,46 @@
     "(app-client)/./src/app/(dashboard)/restaurant/dashboard/page.tsx": {
       "*": {
         "id": "(sc_client)/./src/app/(dashboard)/restaurant/dashboard/page.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./src/app/(dashboard)/restaurant/orders/page.tsx": {
+      "*": {
+        "id": "(sc_client)/./src/app/(dashboard)/restaurant/orders/page.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./src/app/(dashboard)/restaurant/tracking/page.tsx": {
+      "*": {
+        "id": "(sc_client)/./src/app/(dashboard)/restaurant/tracking/page.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./src/app/(dashboard)/admin/dashboard/page.tsx": {
+      "*": {
+        "id": "(sc_client)/./src/app/(dashboard)/admin/dashboard/page.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./src/app/(dashboard)/admin/restaurants/page.tsx": {
+      "*": {
+        "id": "(sc_client)/./src/app/(dashboard)/admin/restaurants/page.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./src/app/(dashboard)/restaurant/menu/page.tsx": {
+      "*": {
+        "id": "(sc_client)/./src/app/(dashboard)/restaurant/menu/page.tsx",
         "name": "*",
         "chunks": [],
         "async": false
@@ -171,22 +211,6 @@
       ],
       "async": false
     },
-    "/Volumes/StarkT7/proyectos/CLIENETS/proyectos/HEYBOX/backend adminsitracion/backend/node_modules/next/dist/client/link.js": {
-      "id": "(app-client)/./node_modules/next/dist/client/link.js",
-      "name": "*",
-      "chunks": [
-        "app/(auth)/layout:static/chunks/app/(auth)/layout.js"
-      ],
-      "async": false
-    },
-    "/Volumes/StarkT7/proyectos/CLIENETS/proyectos/HEYBOX/backend adminsitracion/backend/node_modules/next/dist/esm/client/link.js": {
-      "id": "(app-client)/./node_modules/next/dist/client/link.js",
-      "name": "*",
-      "chunks": [
-        "app/(auth)/layout:static/chunks/app/(auth)/layout.js"
-      ],
-      "async": false
-    },
     "/Volumes/StarkT7/proyectos/CLIENETS/proyectos/HEYBOX/backend adminsitracion/backend/node_modules/next/font/google/target.css?{\"path\":\"src/app/layout.tsx\",\"import\":\"Inter\",\"arguments\":[{\"subsets\":[\"latin\"]}],\"variableName\":\"inter\"}": {
       "id": "(app-client)/./node_modules/next/font/google/target.css?{\"path\":\"src/app/layout.tsx\",\"import\":\"Inter\",\"arguments\":[{\"subsets\":[\"latin\"]}],\"variableName\":\"inter\"}",
       "name": "*",
@@ -207,7 +231,7 @@
       "id": "(app-client)/./src/components/ui/toaster.tsx",
       "name": "*",
       "chunks": [
-        "app/layout:static/chunks/app/layout.js"
+        "app/(auth)/layout:static/chunks/app/(auth)/layout.js"
       ],
       "async": false
     },
@@ -216,6 +240,22 @@
       "name": "*",
       "chunks": [
         "app/layout:static/chunks/app/layout.js"
+      ],
+      "async": false
+    },
+    "/Volumes/StarkT7/proyectos/CLIENETS/proyectos/HEYBOX/backend adminsitracion/backend/node_modules/next/dist/client/link.js": {
+      "id": "(app-client)/./node_modules/next/dist/client/link.js",
+      "name": "*",
+      "chunks": [
+        "app/page:static/chunks/app/page.js"
+      ],
+      "async": false
+    },
+    "/Volumes/StarkT7/proyectos/CLIENETS/proyectos/HEYBOX/backend adminsitracion/backend/node_modules/next/dist/esm/client/link.js": {
+      "id": "(app-client)/./node_modules/next/dist/client/link.js",
+      "name": "*",
+      "chunks": [
+        "app/page:static/chunks/app/page.js"
       ],
       "async": false
     },
@@ -242,16 +282,61 @@
         "app/(dashboard)/restaurant/dashboard/page:static/chunks/app/(dashboard)/restaurant/dashboard/page.js"
       ],
       "async": false
+    },
+    "/Volumes/StarkT7/proyectos/CLIENETS/proyectos/HEYBOX/backend adminsitracion/backend/src/app/(dashboard)/restaurant/orders/page.tsx": {
+      "id": "(app-client)/./src/app/(dashboard)/restaurant/orders/page.tsx",
+      "name": "*",
+      "chunks": [
+        "app/(dashboard)/restaurant/orders/page:static/chunks/app/(dashboard)/restaurant/orders/page.js"
+      ],
+      "async": false
+    },
+    "/Volumes/StarkT7/proyectos/CLIENETS/proyectos/HEYBOX/backend adminsitracion/backend/src/app/(dashboard)/restaurant/tracking/page.tsx": {
+      "id": "(app-client)/./src/app/(dashboard)/restaurant/tracking/page.tsx",
+      "name": "*",
+      "chunks": [
+        "app/(dashboard)/restaurant/tracking/page:static/chunks/app/(dashboard)/restaurant/tracking/page.js"
+      ],
+      "async": false
+    },
+    "/Volumes/StarkT7/proyectos/CLIENETS/proyectos/HEYBOX/backend adminsitracion/backend/src/app/(dashboard)/admin/dashboard/page.tsx": {
+      "id": "(app-client)/./src/app/(dashboard)/admin/dashboard/page.tsx",
+      "name": "*",
+      "chunks": [
+        "app/(dashboard)/admin/dashboard/page:static/chunks/app/(dashboard)/admin/dashboard/page.js"
+      ],
+      "async": false
+    },
+    "/Volumes/StarkT7/proyectos/CLIENETS/proyectos/HEYBOX/backend adminsitracion/backend/src/app/(dashboard)/admin/restaurants/page.tsx": {
+      "id": "(app-client)/./src/app/(dashboard)/admin/restaurants/page.tsx",
+      "name": "*",
+      "chunks": [
+        "app/(dashboard)/admin/restaurants/page:static/chunks/app/(dashboard)/admin/restaurants/page.js"
+      ],
+      "async": false
+    },
+    "/Volumes/StarkT7/proyectos/CLIENETS/proyectos/HEYBOX/backend adminsitracion/backend/src/app/(dashboard)/restaurant/menu/page.tsx": {
+      "id": "(app-client)/./src/app/(dashboard)/restaurant/menu/page.tsx",
+      "name": "*",
+      "chunks": [
+        "app/(dashboard)/restaurant/menu/page:static/chunks/app/(dashboard)/restaurant/menu/page.js"
+      ],
+      "async": false
     }
   },
   "entryCSSFiles": {
-    "/Volumes/StarkT7/proyectos/CLIENETS/proyectos/HEYBOX/backend adminsitracion/backend/src/app/page": [],
     "/Volumes/StarkT7/proyectos/CLIENETS/proyectos/HEYBOX/backend adminsitracion/backend/src/app/layout": [
       "static/css/app/layout.css"
     ],
-    "/Volumes/StarkT7/proyectos/CLIENETS/proyectos/HEYBOX/backend adminsitracion/backend/src/app/(auth)/login/page": [],
     "/Volumes/StarkT7/proyectos/CLIENETS/proyectos/HEYBOX/backend adminsitracion/backend/src/app/(auth)/layout": [],
+    "/Volumes/StarkT7/proyectos/CLIENETS/proyectos/HEYBOX/backend adminsitracion/backend/src/app/(auth)/login/page": [],
     "/Volumes/StarkT7/proyectos/CLIENETS/proyectos/HEYBOX/backend adminsitracion/backend/src/app/(dashboard)/layout": [],
-    "/Volumes/StarkT7/proyectos/CLIENETS/proyectos/HEYBOX/backend adminsitracion/backend/src/app/(dashboard)/restaurant/dashboard/page": []
+    "/Volumes/StarkT7/proyectos/CLIENETS/proyectos/HEYBOX/backend adminsitracion/backend/src/app/(dashboard)/restaurant/dashboard/page": [],
+    "/Volumes/StarkT7/proyectos/CLIENETS/proyectos/HEYBOX/backend adminsitracion/backend/src/app/(dashboard)/restaurant/orders/page": [],
+    "/Volumes/StarkT7/proyectos/CLIENETS/proyectos/HEYBOX/backend adminsitracion/backend/src/app/(dashboard)/restaurant/tracking/page": [],
+    "/Volumes/StarkT7/proyectos/CLIENETS/proyectos/HEYBOX/backend adminsitracion/backend/src/app/(dashboard)/admin/dashboard/page": [],
+    "/Volumes/StarkT7/proyectos/CLIENETS/proyectos/HEYBOX/backend adminsitracion/backend/src/app/(dashboard)/admin/restaurants/page": [],
+    "/Volumes/StarkT7/proyectos/CLIENETS/proyectos/HEYBOX/backend adminsitracion/backend/src/app/(dashboard)/restaurant/menu/page": [],
+    "/Volumes/StarkT7/proyectos/CLIENETS/proyectos/HEYBOX/backend adminsitracion/backend/src/app/page": []
   }
 }

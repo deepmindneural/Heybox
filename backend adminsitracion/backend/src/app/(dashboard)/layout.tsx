@@ -1,20 +1,22 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { 
   BarChart3, 
   ChefHat, 
   ChevronsLeft, 
   ChevronsRight, 
   ClipboardList, 
+  CreditCard,
   Home, 
   LogOut, 
   Map, 
   MessageSquare, 
   Settings, 
   ShoppingBag, 
+  Store,
   Users 
 } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -54,6 +56,24 @@ const SidebarItem = ({ icon, title, href, isActive, isCollapsed }: SidebarItemPr
   )
 }
 
+// Datos de restaurantes para demo
+const restaurantData = {
+  "burger@heybox.co": {
+    name: "Burger Deluxe",
+    logo: "BD",
+    type: "Hamburguesas",
+    address: "Calle 123 #45-67",
+    rating: 4.7
+  },
+  "pizza@heybox.co": {
+    name: "Pizza Heaven",
+    logo: "PH",
+    type: "Pizzería",
+    address: "Carrera 89 #12-34",
+    rating: 4.5
+  }
+}
+
 export default function DashboardLayout({
   children,
 }: {
@@ -61,11 +81,26 @@ export default function DashboardLayout({
 }) {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false)
+  const [currentRestaurant, setCurrentRestaurant] = useState<typeof restaurantData[keyof typeof restaurantData] | null>(null)
   const pathname = usePathname()
+  const router = useRouter()
   const { toast } = useToast()
   
   // Determinar si el usuario es administrador general o de restaurante
   const isAdmin = pathname.startsWith("/admin")
+  
+  // Cargar datos del restaurante actual al iniciar (simulado)
+  useEffect(() => {
+    // Obtener el email del usuario del localStorage (en una implementación real vendría de un contexto de autenticación)
+    const userEmail = localStorage.getItem('userEmail') || ''
+    
+    if (!isAdmin && userEmail && restaurantData[userEmail as keyof typeof restaurantData]) {
+      setCurrentRestaurant(restaurantData[userEmail as keyof typeof restaurantData])
+    } else if (!isAdmin) {
+      // Valor por defecto para demo si no hay email guardado
+      setCurrentRestaurant(restaurantData["burger@heybox.co"])
+    }
+  }, [isAdmin])
   
   // Menú para administrador general
   const adminMenu = [
@@ -73,6 +108,7 @@ export default function DashboardLayout({
     { title: "Restaurantes", icon: <ChefHat />, href: "/admin/restaurants" },
     { title: "Usuarios", icon: <Users />, href: "/admin/users" },
     { title: "Pedidos", icon: <ShoppingBag />, href: "/admin/orders" },
+    { title: "Pagos", icon: <CreditCard />, href: "/admin/payments" },
     { title: "Métricas", icon: <BarChart3 />, href: "/admin/metrics" },
     { title: "Configuración", icon: <Settings />, href: "/admin/settings" },
   ]
@@ -92,11 +128,17 @@ export default function DashboardLayout({
   const menuItems = isAdmin ? adminMenu : restaurantMenu
   
   const handleLogout = () => {
+    // Limpiar datos del usuario del localStorage
+    localStorage.removeItem('userEmail')
+    localStorage.removeItem('userName')
+    localStorage.removeItem('userRole')
+    
     toast({
       title: "Cerrando sesión...",
       description: "Has cerrado sesión correctamente.",
     })
-    // En una implementación real, aquí iría la lógica de cierre de sesión
+    
+    // Redireccionar al login
     window.location.href = "/login"
   }
 
@@ -139,9 +181,30 @@ export default function DashboardLayout({
             <div className="flex lg:ml-0">
               <Link href="/" className="flex items-center gap-2">
                 <span className="text-xl font-bold text-heybox-primary">HeyBox</span>
-                <span className="text-xs bg-heybox-secondary text-white px-1.5 py-0.5 rounded">
-                  {isAdmin ? "Admin" : "Restaurante"}
-                </span>
+                {isAdmin ? (
+                  <span className="text-xs bg-heybox-secondary text-white px-1.5 py-0.5 rounded">
+                    Admin General
+                  </span>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs bg-heybox-secondary text-white px-1.5 py-0.5 rounded">
+                      Restaurante
+                    </span>
+                    {currentRestaurant && (
+                      <div className="flex items-center gap-2 ml-2 pl-2 border-l border-gray-200">
+                        <div className="h-6 w-6 rounded-full bg-heybox-primary/20 flex items-center justify-center text-heybox-primary font-semibold text-xs">
+                          {currentRestaurant.logo}
+                        </div>
+                        <span className="text-sm font-medium text-gray-800">
+                          {currentRestaurant.name}
+                        </span>
+                        <span className="text-xs text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded">
+                          {currentRestaurant.type}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                )}
               </Link>
             </div>
 
@@ -153,10 +216,13 @@ export default function DashboardLayout({
                   <div className="flex items-center">
                     <div className="hidden md:block mr-3 text-right">
                       <div className="text-sm font-medium text-gray-900">
-                        {isAdmin ? "Administrador" : "Restaurante"}
+                        {isAdmin ? "Administrador" : currentRestaurant?.name || "Restaurante"}
                       </div>
                       <div className="text-xs text-gray-500">
-                        {isAdmin ? "Gestión Global" : "Mi Restaurante"}
+                        {isAdmin ? "Gestión Global" : 
+                          currentRestaurant ? 
+                            `${currentRestaurant.type} · ${currentRestaurant.rating}★` : 
+                            "Mi Restaurante"}
                       </div>
                     </div>
                     <button
@@ -165,7 +231,7 @@ export default function DashboardLayout({
                     >
                       <span className="sr-only">Abrir menú de usuario</span>
                       <div className="h-8 w-8 rounded-full bg-heybox-primary/20 flex items-center justify-center text-heybox-primary font-semibold">
-                        {isAdmin ? "A" : "R"}
+                        {isAdmin ? "A" : currentRestaurant?.logo || "R"}
                       </div>
                     </button>
                   </div>

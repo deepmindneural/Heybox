@@ -1,5 +1,6 @@
 import React from "react"
 import Link from "next/link"
+import { Toaster } from "@/components/ui/toaster"
 
 export default function AuthLayout({
   children,
@@ -24,6 +25,9 @@ export default function AuthLayout({
           <p>© {new Date().getFullYear()} HeyBox. Todos los derechos reservados.</p>
         </div>
       </footer>
+      
+      {/* Toaster para mostrar notificaciones */}
+      <Toaster />
     </div>
   )
 }
