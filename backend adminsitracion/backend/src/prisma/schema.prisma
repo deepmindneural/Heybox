@@ -1,0 +1,202 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+// Modelos para el sistema de HeyBox
+
+// Usuario del sistema (administradores y personal de restaurantes)
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  name          String
+  password      String
+  role          Role      @default(STAFF)
+  restaurant    Restaurant? @relation(fields: [restaurantId], references: [id])
+  restaurantId  String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+// Clientes que hacen pedidos
+model Customer {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  name          String
+  phone         String?
+  orders        Order[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+// Restaurantes
+model Restaurant {
+  id            String    @id @default(uuid())
+  name          String
+  address       String
+  latitude      Float?
+  longitude     Float?
+  logo          String?
+  description   String?
+  openTime      String?
+  closeTime     String?
+  isActive      Boolean   @default(true)
+  staff         User[]
+  products      Product[]
+  categories    Category[]
+  orders        Order[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+// Categorías de productos
+model Category {
+  id            String    @id @default(uuid())
+  name          String
+  restaurant    Restaurant @relation(fields: [restaurantId], references: [id])
+  restaurantId  String
+  products      Product[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@unique([name, restaurantId])
+}
+
+// Productos
+model Product {
+  id            String    @id @default(uuid())
+  name          String
+  description   String?
+  price         Float
+  image         String?
+  isAvailable   Boolean   @default(true)
+  preparationTime Int?    // tiempo de preparación en minutos
+  restaurant    Restaurant @relation(fields: [restaurantId], references: [id])
+  restaurantId  String
+  category      Category  @relation(fields: [categoryId], references: [id])
+  categoryId    String
+  orderItems    OrderItem[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+// Pedidos
+model Order {
+  id            String    @id @default(uuid())
+  orderNumber   String    @unique // Número visible para el cliente
+  status        OrderStatus @default(PENDING)
+  total         Float
+  customer      Customer  @relation(fields: [customerId], references: [id])
+  customerId    String
+  restaurant    Restaurant @relation(fields: [restaurantId], references: [id])
+  restaurantId  String
+  items         OrderItem[]
+  payment       Payment?
+  tracking      Tracking?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+// Items de un pedido
+model OrderItem {
+  id            String    @id @default(uuid())
+  quantity      Int
+  unitPrice     Float
+  subtotal      Float
+  notes         String?
+  order         Order     @relation(fields: [orderId], references: [id])
+  orderId       String
+  product       Product   @relation(fields: [productId], references: [id])
+  productId     String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+// Pagos
+model Payment {
+  id            String    @id @default(uuid())
+  amount        Float
+  method        PaymentMethod
+  status        PaymentStatus @default(PENDING)
+  transactionId String?
+  order         Order     @relation(fields: [orderId], references: [id])
+  orderId       String    @unique
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+// Seguimiento de pedidos
+model Tracking {
+  id            String    @id @default(uuid())
+  order         Order     @relation(fields: [orderId], references: [id])
+  orderId       String    @unique
+  latitude      Float?
+  longitude     Float?
+  status        TrackingStatus @default(WAITING)
+  estimatedArrival DateTime?
+  arrivedAt     DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+// Notificaciones
+model Notification {
+  id            String    @id @default(uuid())
+  title         String
+  message       String
+  read          Boolean   @default(false)
+  type          NotificationType
+  recipientId   String
+  createdAt     DateTime  @default(now())
+}
+
+// Enumeraciones
+enum Role {
+  ADMIN
+  MANAGER
+  STAFF
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PREPARING
+  READY
+  COMPLETED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  CREDIT_CARD
+  DEBIT_CARD
+  PAYPAL
+  CASH
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+enum TrackingStatus {
+  WAITING      // Cliente no ha llegado
+  APPROACHING  // Cliente acercándose
+  ARRIVED      // Cliente llegó al restaurante
+  COMPLETED    // Pedido entregado
+}
+
+enum NotificationType {
+  ORDER_STATUS
+  PAYMENT
+  CUSTOMER_ARRIVAL
+  SYSTEM
+}

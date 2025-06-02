@@ -1,0 +1,27 @@
+/* Corregir problemas con iconos de Leaflet en Next.js */
+.leaflet-default-icon-path {
+  background-image: url(https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png);
+}
+
+.leaflet-control-container .leaflet-control {
+  z-index: 800 !important;
+}
+
+/* Asegurar que los elementos del mapa aparezcan sobre otros elementos */
+.leaflet-container {
+  z-index: 1;
+}
+
+.leaflet-popup-content {
+  min-width: 200px;
+}
+
+.leaflet-popup-content p {
+  margin: 5px 0;
+}
+
+.leaflet-popup-content strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
